@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 // use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
+use App\Http\Requests\HelloRequest;
+
 class HelloController extends Controller
 {
 // public function hello(){
@@ -22,27 +24,11 @@ class HelloController extends Controller
         // </html>
 // EOF;
     // }
-public function index($id='noname', $pass='unknown') {
-    return <<<EOF
-        <html>
-            <head>
-                <title>Hello/Index</title>
-                <style>
-                    body {font-size:16pt; color:#999; }
-                    h1 { font-size:100pt; text-align:right; color:#999; margin:-40px 0px -50px 0px; }
-                </style>
-            </head>
-            <body>
-                <h1>Index</h1> 
-                <p>this is indexAction in HelloController</p>
-                <ul>
-                    <li>ID: {$id}</li>
-                    <li>PASS: {$pass}</li>                       
-                </ul>
-            </body>
-        </html>
-EOF;
-    }
+public function index(Request $request)
+{
+    return view('hello.index', ['data'=>$request->data]);
+}
+
 public function access(Request $request, Response $response) {
      $html = <<<EOF
         <html>
@@ -68,4 +54,19 @@ EOF;
     $response->setContent($html);
     return $response;
 }
+
+public function post(Request $request){
+    $msg = $request->msg;
+    $data = ['msg' => 'こんにちは、'.$msg.'さん！',];
+    return view('hello.index', $data);
+}
+
+public function validateForm(Request $request){
+    return view('hello.validate', ['msg'=>'フォームを入力:']);
+}
+
+public function validatePost(HelloRequest $request){
+    return view('hello.validate', ['msg' => '正しく入力されました！']);
+}
+
 }

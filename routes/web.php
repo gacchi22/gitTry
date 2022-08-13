@@ -24,8 +24,7 @@ Route::get('/', function () {
             // </html>';
 // });
 
-Route::get('hello', 'HelloController@index');
-
+Route::get('hello', 'HelloController@index')->middleware(HelloMiddleware::class);
 
 Route::get('hello/test', 'HelloController@hello');
 
@@ -39,3 +38,14 @@ Route::get('access', 'HelloController@access');
 
 Route::post('hello', 'HelloController@post');
 
+Route::get('hello/add', 'HelloController@add');
+
+Route::post('hello/add', 'HelloController@create');
+
+Route::get('hello/edit', 'HelloController@edit');
+
+Route::post('hello/edit', 'HelloController@update');
+
+Route::get('hello/del', 'HelloController@del');
+
+Route::post('hello/del', 'HelloController@remove');

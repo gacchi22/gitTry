@@ -8,13 +8,17 @@
 @endsection
 
 @section('content')
-    <p>本文のコンテンツです。</p>
-    <!--<p>必要なだけ記載できます。</p>-->
     <table>
-        @foreach($data as $item)
         <tr>
-            <th>{{$item['name']}}</th>
-            <td>{{$item['mail']}}</td>
+            <th>Name</th>
+            <th>Mail</th>
+            <th>Age</th>
+        </tr>
+        @foreach($items as $item)
+        <tr>
+            <td>{{$item->name}}</td>
+            <td>{{$item->mail}}</td>
+            <td>{{$item->age}}</td>
         </tr>
         @endforeach
     </table>

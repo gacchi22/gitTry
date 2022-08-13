@@ -24,7 +24,7 @@ Route::get('/', function () {
             // </html>';
 // });
 
-Route::get('hello', 'HelloController@index')->middleware(HelloMiddleware::class);
+Route::get('hello', 'HelloController@index');
 
 Route::get('hello/test', 'HelloController@hello');
 
@@ -32,7 +32,7 @@ Route::get('hello/validate', 'HelloController@validateForm');
 
 Route::post('hello/validate', 'HelloController@validatePost');
 
-Route::get('hello/{id?}/{pass?}', 'HelloController@index');
+// Route::get('hello/{id?}/{pass?}', 'HelloController@index');
 
 Route::get('access', 'HelloController@access');
 
